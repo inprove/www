@@ -14,18 +14,73 @@
                 -o-background-size: cover;
                 background-size: cover;
                 font-family: 'Montserrat', sans-serif;
+                color: #fff;
+                display: -webkit-box;
+                display: -moz-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
             }
 
             h1 {
-                color: #fff;
                 text-align: center;
                 font-size: 5em;
-                padding: calc(50vh - 57px) 0;
                 margin: 0;
+            }
+
+            p {
+                font-size: 1.5em;
             }
         </style>
     </head>
     <body>
-        <h1>inprove</h1>
+        <div class="main">
+            <h1>inprove</h1>
+            <p>we live to_ <span id="we-live-to">inpress</span></p>
+        </div>
+        <script>
+            var words = [
+                {
+                    word: 'inpress',
+                    neg: true,
+                    showTime: 400
+                },
+                {
+                    word: 'innovate',
+                    neg: true,
+                    showTime: 400
+                },
+                {
+                    word: 'inprove',
+                    neg: false,
+                    showTime: 1500
+                }
+            ];
+
+            var counter = 0;
+
+            function nextWord() {
+                var curIndex = counter % words.length;
+                var wordSpan = document.getElementById('we-live-to');
+                if(wordSpan) {
+                    wordSpan.innerHTML = words[curIndex].word
+                    if(words[curIndex].neg) {
+                        wordSpan.className = "";
+                    } else {
+                        wordSpan.className = "neg";
+                    }
+                    setTimeout(function() {
+                        counter++;
+                        nextWord();
+                    },words[curIndex].showTime);
+                }
+            }
+            nextWord();
+        </script>
     </body>
 </html>
