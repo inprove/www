@@ -61,17 +61,28 @@
 
             var counter = 0;
 
+            function writeWord(n, el, word, cb) {
+                el.textContent = word.slice(0, n)
+                if (n >= word.length) {
+                    cb();
+                } else {
+                    setTimeout(writeWord.bind(null, n + 1, el, word, cb), Math.round(Math.random() * 100) + 50)
+                }
+            }
+            
             function nextWord() {
                 var curIndex = counter % words.length;
                 var wordSpan = document.getElementById('we-live-to');
                 if(wordSpan) {
-                    wordSpan.innerHTML = words[curIndex].word
-                    setTimeout(function() {
-                        counter++;
-                        nextWord();
-                    },words[curIndex].showTime);
+                    writeWord(1, wordSpan, words[curIndex].word, () => {
+                        setTimeout(function() {
+                            counter++;
+                            nextWord();
+                        }, 1000);
+                    })
                 }
             }
+            
             nextWord();
         </script>
     </body>
