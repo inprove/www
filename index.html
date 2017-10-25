@@ -47,11 +47,11 @@
             var words = [
                 {
                     word: 'inpress',
-                    showTime: 400
+                    showTime: 1000
                 },
                 {
                     word: 'innovate',
-                    showTime: 400
+                    showTime: 1000
                 },
                 {
                     word: 'inprove',
@@ -78,7 +78,7 @@
                         setTimeout(function() {
                             counter++;
                             nextWord();
-                        }, 1000);
+                        }, words[curIndex].showTime);
                     })
                 }
             }
